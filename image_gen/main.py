@@ -242,23 +242,14 @@ def draw_shape(df, date_, i, drw_, aln_week_, bnf_week_, ntw_week_, rbs_week_):
 
 
 class ImageGenPlugin(BasePlugin):
-    def on_page_content(self, html, page, config, site_navigation=None, **kwargs):
+    def on_files(self, files, config, **kwargs):
 
-        match_iter = re.finditer(MATCH_REGEX, html)
+        logging.warn("Files: {}".format(files))
+        return files
 
-        for match in match_iter:
-            name = match.group('name')
-            if name.startswith('meta.'):
-                try:
-                    meta_name = str(name.split('.')[1])
-                    required_meta_data = str(page.meta[meta_name])
-                    if not required_meta_data or not isinstance(required_meta_data, str):
-                        logging.error('Unsupported meta data type. \
-                                       Received %s : %s' % (meta_name, required_meta_data))
-                        continue
-                    html = html.replace(('{{ meta.%s }}' % meta_name), required_meta_data)
 
-                except KeyError:
-                    logging.error('Meta data not found: %s' % (meta_name))
+    def on_files(self, nav, files, config, **kwargs):
 
-        return html
+        logging.warn("Files: {}".format(nav))
+        logging.warn("Files: {}".format(files))
+        return nav

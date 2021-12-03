@@ -9,7 +9,7 @@ setup(
     author='David Ritter',
     author_email='',
     description='Image Generator',
-    install_requires=['mkdocs', 'pandas'],
+    install_requires=['mkdocs', 'pandas', 'svgwrite'],
     entry_points={
         'mkdocs.plugins': [
             'replace = replace:ReplacePlugin',
