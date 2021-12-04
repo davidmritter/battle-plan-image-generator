@@ -22,9 +22,11 @@ def create_svgs(data, today):
 
     # Common for all diagrams
     if today.isoweekday() == 7:
-        drw = Drawing(filename="main.svg", size=("935", "167"))
+        # drw = Drawing(filename="main.svg", size=("935", "167"))
+        drw = Drawing(filename="main.svg", size=("100%", "auto"), viewBox="0 0 935 167")
     else:
-        drw = Drawing(filename="main.svg", size=("918", "167"))
+        # drw = Drawing(filename="main.svg", size=("918", "167"))
+        drw = Drawing(filename="main.svg", size=("100%", "auto"), viewBox="0 0 918 167")
     style = drw.style(
         ".user-contrib-text{font-size: 12px; fill: #d0d0d0;}svg{background-color:rgba(0,0,0,0)}"
     )
