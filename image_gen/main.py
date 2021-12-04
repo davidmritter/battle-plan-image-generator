@@ -7,10 +7,10 @@ from dateutil.relativedelta import relativedelta
 from copy import deepcopy
 from mkdocs.structure.files import File
 
-alignment_color = "rgb(189, 120, 83)"
-benefaction_color = "rgb(26, 44, 203)"
-network_color = "rgb(227, 209, 43)"
-robustness_color = "rgb(204, 32, 27)"
+calibration_color = "rgb(138, 127, 91)"
+condition_color = "rgb(150, 86, 31)"
+connection_color = "rgb(25, 80, 105)"
+contribution_color = "rgb(91, 83, 28)"
 nan_color = "rgb(70, 73, 95)"
 
 def create_svgs(data, today):
@@ -182,19 +182,19 @@ def draw_shape(df, date_, i, drw_, aln_week_, bnf_week_, ntw_week_, rbs_week_):
     try:
         row = df.loc[[date_]]
         if row.iat[0, 0]:
-            aln_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=alignment_color)
+            aln_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=calibration_color)
         else:
             aln_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=nan_color)
         if row.iat[0, 1]:
-            bnf_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=benefaction_color)
+            bnf_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=condition_color)
         else:
             bnf_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=nan_color)
         if row.iat[0, 2]:
-            ntw_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=network_color)
+            ntw_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=connection_color)
         else:
             ntw_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=nan_color)
         if row.iat[0, 3]:
-            rbs_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=robustness_color)
+            rbs_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=contribution_color)
         else:
             rbs_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=nan_color)
     except KeyError:
