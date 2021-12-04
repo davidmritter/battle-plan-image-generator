@@ -23,7 +23,7 @@ def create_svgs(data, today):
     else:
         drw = Drawing(filename="main.svg", size=("918", "167"))
     style = drw.style(
-        ".user-contrib-text{font-size: 12px; fill: #b0b0b0;}svg{background-color:#1f1f1f}"
+        ".user-contrib-text{font-size: 12px; fill: #b0b0b0;}svg{background-color:rgba(0,0,0,0)}"
     )
     drw.defs.add(style)
     week = drw.g()
@@ -225,13 +225,25 @@ class ImageGenPlugin(BasePlugin):
             use_directory_urls=False
         )
         files.append(calibration_file)
-        logging.warn("Files: {}".format(files.documentation_pages()))
-        logging.warn("Files: {}".format(files.media_files()))
-
+        condition_file = File(
+            path="condition.svg",
+            src_dir="images",
+            dest_dir=config['site_dir'],
+            use_directory_urls=False
+        )
+        files.append(condition_file)
+        connection_file = File(
+            path="connection.svg",
+            src_dir="images",
+            dest_dir=config['site_dir'],
+            use_directory_urls=False
+        )
+        files.append(connection_file)
+        contribution_file = File(
+            path="contribution.svg",
+            src_dir="images",
+            dest_dir=config['site_dir'],
+            use_directory_urls=False
+        )
+        files.append(contribution_file)
         return files
-
-
-    def on_nav(self, nav, files, config, **kwargs):
-        logging.warn("Files: {}".format(nav))
-        logging.warn("Files: {}".format(files))
-        return nav
