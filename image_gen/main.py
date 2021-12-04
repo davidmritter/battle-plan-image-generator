@@ -222,7 +222,8 @@ class ImageGenPlugin(BasePlugin):
         calibration_file = File(
             path="calibration.svg",
             src_dir="images",
-            dest_dir=config['site_dir']
+            dest_dir=config['site_dir'],
+            use_directory_urls=False
         )
         return files
 
