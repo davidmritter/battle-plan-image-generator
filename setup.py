@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='mkdocs-image-gen',
-    version='0.0.14',
+    version='0.0.15',
     packages=['image_gen'],
     url='',
     license='',
