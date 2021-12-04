@@ -2,8 +2,8 @@ from setuptools import setup
 
 setup(
     name='mkdocs-image-gen',
-    version='0.0.1',
-    packages=['imagegen'],
+    version='0.0.2',
+    packages=['image_gen'],
     url='',
     license='',
     author='David Ritter',
@@ -12,7 +12,7 @@ setup(
     install_requires=['mkdocs', 'pandas', 'svgwrite'],
     entry_points={
         'mkdocs.plugins': [
-            'replace = replace:ReplacePlugin',
+            'image_gen = image_gen:ImageGenPlugin',
         ]
     },
 )
