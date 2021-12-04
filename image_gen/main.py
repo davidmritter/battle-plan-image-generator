@@ -183,10 +183,12 @@ def draw_shape(df, date_, i, drw_, aln_week_, bnf_week_, ntw_week_, rbs_week_):
         row = df.loc[[date_]]
         logging.warn(row)
         if row.iat[0, 0] is not None:
+            print(row.iat[0, 0])
             aln_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=alignment_color)
         else:
             aln_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=nan_color)
         if row.iat[0, 1] is not None:
+            print(row.iat[0, 1])
             bnf_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=benefaction_color)
         else:
             bnf_rect = drw_.rect(insert=(0, i * 17), size=(15, 15), fill=nan_color)
