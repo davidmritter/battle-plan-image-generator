@@ -39,13 +39,13 @@ def create_svgs(data, today):
 
     # Create used diagrams
     aln_drw = deepcopy(drw)
-    aln_drw.filename = "image/aln_drw.svg"
+    aln_drw.filename = "images/aln_drw.svg"
     bnf_drw = deepcopy(drw)
-    bnf_drw.filename = "image/bnf_drw.svg"
+    bnf_drw.filename = "images/bnf_drw.svg"
     ntw_drw = deepcopy(drw)
-    ntw_drw.filename = "image/ntw_drw.svg"
+    ntw_drw.filename = "images/ntw_drw.svg"
     rbs_drw = deepcopy(drw)
-    rbs_drw.filename = "image/rbs_drw.svg"
+    rbs_drw.filename = "images/rbs_drw.svg"
 
     # Create group for month labels
     month = drw.g()
