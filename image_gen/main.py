@@ -6,12 +6,15 @@ from datetime import datetime, timedelta, time, timezone, date
 from dateutil.relativedelta import relativedelta
 from copy import deepcopy
 from mkdocs.structure.files import File
+import re
 
 calibration_color = "rgb(138, 127, 91)"
 condition_color = "rgb(150, 86, 31)"
 connection_color = "rgb(25, 80, 105)"
 contribution_color = "rgb(91, 83, 28)"
 nan_color = "rgb(70, 73, 95)"
+
+MATCH_REGEX = r"{{ svg-(?P<graph>contribution|calibration|connection|condition) }}"
 
 def create_svgs(data, today):
     starting_date = today - relativedelta(years=1)
@@ -250,3 +253,14 @@ class ImageGenPlugin(BasePlugin):
         )
         files.append(contribution_file)
         return files
+
+    def on_page_content(self, html, page, config, site_navigation=None, **kwargs):
+        match_iter = re.finditer(MATCH_REGEX, html)
+
+        for match in match_iter:
+            graph = match.group('graph')
+            if graph == "calibration":
+                with open("calibration.svg", "r+") as svg:
+                    html = html.replace(('{{{{ svg-{} }}}}'.format(graph)), svg.read())
+
+        return html
