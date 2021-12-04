@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='mkdocs-image-gen',
     version='0.0.1',
-    packages=['image_gen'],
+    packages=['imagegen'],
     url='',
     license='',
     author='David Ritter',
