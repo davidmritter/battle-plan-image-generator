@@ -263,4 +263,16 @@ class ImageGenPlugin(BasePlugin):
                 with open("images/calibration.svg", "r+") as svg:
                     html = html.replace(('{{{{ svg-{} }}}}'.format(graph)), svg.read())
 
+            if graph == "condition":
+                with open("images/condition.svg", "r+") as svg:
+                    html = html.replace(('{{{{ svg-{} }}}}'.format(graph)), svg.read())
+
+            if graph == "connection":
+                with open("images/connection.svg", "r+") as svg:
+                    html = html.replace(('{{{{ svg-{} }}}}'.format(graph)), svg.read())
+
+            if graph == "contribution":
+                with open("images/contribution.svg", "r+") as svg:
+                    html = html.replace(('{{{{ svg-{} }}}}'.format(graph)), svg.read())
+
         return html
