@@ -2,7 +2,7 @@ import logging
 from mkdocs.plugins import BasePlugin
 import pandas as pd
 from svgwrite import Drawing
-from datetime import date, timedelta, time
+from datetime import datetime, timedelta, time, tzinfo, date
 from dateutil.relativedelta import relativedelta
 from copy import deepcopy
 from mkdocs.structure.files import File
@@ -216,7 +216,9 @@ class ImageGenPlugin(BasePlugin):
     def on_pre_build(self, config, **kwargs):
         df = pd.read_csv("log.csv", index_col="date", parse_dates=True)
         results = df.notna()
-        create_svgs(results, date.today())
+        tzinfo = timezone(timedelta(hours=-7.0))
+        today = datetime.now(tzinfo).date()
+        create_svgs(results, today)
 
     def on_files(self, files, config, **kwargs):
         calibration_file = File(
