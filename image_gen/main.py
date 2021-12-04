@@ -149,22 +149,6 @@ def create_svgs(data, today):
     bnf_week = bnf_drw.add(drw.g(class_="calendar_week", transform=week_translation))
     ntw_week = ntw_drw.add(drw.g(class_="calendar_week", transform=week_translation))
     rbs_week = rbs_drw.add(drw.g(class_="calendar_week", transform=week_translation))
-    week_translation = "translate({},18)".format(last_ofset_short)
-    week_short = drw_short.add(
-        drw.g(class_="calendar_week", transform=week_translation)
-    )
-    aln_week_short = aln_drw_short.add(
-        drw.g(class_="calendar_week", transform=week_translation)
-    )
-    bnf_week_short = bnf_drw_short.add(
-        drw.g(class_="calendar_week", transform=week_translation)
-    )
-    ntw_week_short = ntw_drw_short.add(
-        drw.g(class_="calendar_week", transform=week_translation)
-    )
-    rbs_week_short = rbs_drw_short.add(
-        drw.g(class_="calendar_week", transform=week_translation)
-    )
     for i in range(7):
         if i > today.isoweekday() or (today.isoweekday() == 7 and i > 0):
             continue
@@ -173,24 +157,10 @@ def create_svgs(data, today):
             current_date,
             i,
             drw,
-            week,
             aln_week,
             bnf_week,
             ntw_week,
-            rbs_week,
-            warrior
-        )
-        draw_shape(
-            campaign_tracker_data,
-            current_date,
-            i,
-            drw_short,
-            week_short,
-            aln_week_short,
-            bnf_week_short,
-            ntw_week_short,
-            rbs_week_short,
-            warrior
+            rbs_week
         )
         current_date += timedelta(days=1)
 
