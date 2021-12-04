@@ -11,7 +11,7 @@ alignment_color = "rgb(189, 120, 83)"
 benefaction_color = "rgb(26, 44, 203)"
 network_color = "rgb(227, 209, 43)"
 robustness_color = "rgb(204, 32, 27)"
-nan_color = "rgb(47,47,47)"
+nan_color = "rgb(70, 73, 95)"
 
 def create_svgs(data, today):
     starting_date = today - relativedelta(years=1)
@@ -23,7 +23,7 @@ def create_svgs(data, today):
     else:
         drw = Drawing(filename="main.svg", size=("918", "167"))
     style = drw.style(
-        ".user-contrib-text{font-size: 12px; fill: #b0b0b0;}svg{background-color:rgba(0,0,0,0)}"
+        ".user-contrib-text{font-size: 12px; fill: #d0d0d0;}svg{background-color:rgba(0,0,0,0)}"
     )
     drw.defs.add(style)
     week = drw.g()
