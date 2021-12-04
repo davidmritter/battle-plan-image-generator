@@ -39,13 +39,13 @@ def create_svgs(data, today):
 
     # Create used diagrams
     aln_drw = deepcopy(drw)
-    aln_drw.filename = "aln_drw.svg"
+    aln_drw.filename = "image/aln_drw.svg"
     bnf_drw = deepcopy(drw)
-    bnf_drw.filename = "bnf_drw.svg"
+    bnf_drw.filename = "image/bnf_drw.svg"
     ntw_drw = deepcopy(drw)
-    ntw_drw.filename = "ntw_drw.svg"
+    ntw_drw.filename = "image/ntw_drw.svg"
     rbs_drw = deepcopy(drw)
-    rbs_drw.filename = "rbs_drw.svg"
+    rbs_drw.filename = "image/rbs_drw.svg"
 
     # Create group for month labels
     month = drw.g()
@@ -245,6 +245,7 @@ class ImageGenPlugin(BasePlugin):
     def on_pre_build(self, config, **kwargs):
         df = pd.read_csv("log.csv", index_col="date", parse_dates=True)
         print(df)
+        create_svgs(df, date.today())
 
     def on_files(self, files, config, **kwargs):
         logging.warn("Files: {}".format(files))
