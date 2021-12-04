@@ -224,7 +224,7 @@ class ImageGenPlugin(BasePlugin):
             dest_dir=config['site_dir'],
             use_directory_urls=False
         )
-        files.append(file)
+        files.append(calibration_file)
         logging.warn("Files: {}".format(files.documentation_pages()))
         logging.warn("Files: {}".format(files.media_files()))
 
