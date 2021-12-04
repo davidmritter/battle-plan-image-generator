@@ -2,7 +2,7 @@ import logging
 from mkdocs.plugins import BasePlugin
 import pandas as pd
 from svgwrite import Drawing
-from datetime import datetime, timedelta, time, tzinfo, date
+from datetime import datetime, timedelta, time, timezone, date
 from dateutil.relativedelta import relativedelta
 from copy import deepcopy
 from mkdocs.structure.files import File
