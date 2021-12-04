@@ -218,13 +218,15 @@ class ImageGenPlugin(BasePlugin):
         create_svgs(df, date.today())
 
     def on_files(self, files, config, **kwargs):
-        logging.warn("Files: {}".format(files.documentation_pages()))
         calibration_file = File(
             path="calibration.svg",
             src_dir="images",
             dest_dir=config['site_dir'],
             use_directory_urls=False
         )
+        logging.warn("Files: {}".format(files.documentation_pages()))
+        logging.warn("Files: {}".format(files.media_files()))
+
         return files
 
 
