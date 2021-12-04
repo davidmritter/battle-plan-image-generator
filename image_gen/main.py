@@ -243,8 +243,8 @@ def draw_shape(df, date_, i, drw_, aln_week_, bnf_week_, ntw_week_, rbs_week_):
 
 class ImageGenPlugin(BasePlugin):
     def on_pre_build(self, config, **kwargs):
-        with open("test.svg", "w") as test:
-            test.write("this is a test")
+        df = pd.read_csv("log.csv", index_col="date", parse_dates=True)
+        print(df)
 
     def on_files(self, files, config, **kwargs):
         logging.warn("Files: {}".format(files))
