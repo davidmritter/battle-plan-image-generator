@@ -260,7 +260,7 @@ class ImageGenPlugin(BasePlugin):
         for match in match_iter:
             graph = match.group('graph')
             if graph == "calibration":
-                with open("calibration.svg", "r+") as svg:
+                with open("images/calibration.svg", "r+") as svg:
                     html = html.replace(('{{{{ svg-{} }}}}'.format(graph)), svg.read())
 
         return html
