@@ -153,7 +153,7 @@ def create_svgs(data, today):
         if i > today.isoweekday() or (today.isoweekday() == 7 and i > 0):
             continue
         draw_shape(
-            campaign_tracker_data,
+            data,
             current_date,
             i,
             drw,
