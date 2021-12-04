@@ -15,13 +15,11 @@ nan_color = "rgb(47,47,47)"
 
 class ImageGenPlugin(BasePlugin):
     def on_files(self, files, config, **kwargs):
-
         logging.warn("Files: {}".format(files))
         return files
 
 
-    def on_files(self, nav, files, config, **kwargs):
-
+    def on_nav(self, nav, files, config, **kwargs):
         logging.warn("Files: {}".format(nav))
         logging.warn("Files: {}".format(files))
         return nav
