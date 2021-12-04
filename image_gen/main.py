@@ -5,6 +5,7 @@ from svgwrite import Drawing
 from datetime import date, timedelta, time
 from dateutil.relativedelta import relativedelta
 from copy import deepcopy
+from mkdocs.structure.files import File
 
 alignment_color = "rgb(189, 120, 83)"
 benefaction_color = "rgb(26, 44, 203)"
@@ -38,14 +39,14 @@ def create_svgs(data, today):
     drw.add(week)
 
     # Create used diagrams
-    aln_drw = deepcopy(drw)
-    aln_drw.filename = "images/aln_drw.svg"
-    bnf_drw = deepcopy(drw)
-    bnf_drw.filename = "images/bnf_drw.svg"
-    ntw_drw = deepcopy(drw)
-    ntw_drw.filename = "images/ntw_drw.svg"
-    rbs_drw = deepcopy(drw)
-    rbs_drw.filename = "images/rbs_drw.svg"
+    clb_drw = deepcopy(drw)
+    clb_drw.filename = "images/calibration.svg"
+    cnd_drw = deepcopy(drw)
+    cnd_drw.filename = "images/condition.svg"
+    cnn_drw = deepcopy(drw)
+    cnn_drw.filename = "images/connection.svg"
+    cnt_drw = deepcopy(drw)
+    cnt_drw.filename = "images/contribution.svg"
 
     # Create group for month labels
     month = drw.g()
@@ -65,10 +66,10 @@ def create_svgs(data, today):
         last_ofset = 902
 
     # Add first week
-    aln_week = aln_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
-    bnf_week = bnf_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
-    ntw_week = ntw_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
-    rbs_week = rbs_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
+    aln_week = clb_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
+    bnf_week = cnd_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
+    ntw_week = cnn_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
+    rbs_week = cnt_drw.add(drw.g(class_="calendar_week", transform="translate(18,18)"))
     for i in range(7):
         if starting_date.isoweekday() == 7:
             continue
@@ -91,16 +92,16 @@ def create_svgs(data, today):
     for week_num in range(full_weeks):
         week_translation = "translate({},18)".format(week_num * 17 + full_ofset)
         week = drw.add(drw.g(class_="calendar_week", transform=week_translation))
-        aln_week = aln_drw.add(
+        aln_week = clb_drw.add(
             drw.g(class_="calendar_week", transform=week_translation)
         )
-        bnf_week = bnf_drw.add(
+        bnf_week = cnd_drw.add(
             drw.g(class_="calendar_week", transform=week_translation)
         )
-        ntw_week = ntw_drw.add(
+        ntw_week = cnn_drw.add(
             drw.g(class_="calendar_week", transform=week_translation)
         )
-        rbs_week = rbs_drw.add(
+        rbs_week = cnt_drw.add(
             drw.g(class_="calendar_week", transform=week_translation)
         )
         # Month stuff
@@ -145,10 +146,10 @@ def create_svgs(data, today):
     # Add last week
     week_translation = "translate({},18)".format(last_ofset)
     week = drw.add(drw.g(class_="calendar_week", transform=week_translation))
-    aln_week = aln_drw.add(drw.g(class_="calendar_week", transform=week_translation))
-    bnf_week = bnf_drw.add(drw.g(class_="calendar_week", transform=week_translation))
-    ntw_week = ntw_drw.add(drw.g(class_="calendar_week", transform=week_translation))
-    rbs_week = rbs_drw.add(drw.g(class_="calendar_week", transform=week_translation))
+    aln_week = clb_drw.add(drw.g(class_="calendar_week", transform=week_translation))
+    bnf_week = cnd_drw.add(drw.g(class_="calendar_week", transform=week_translation))
+    ntw_week = cnn_drw.add(drw.g(class_="calendar_week", transform=week_translation))
+    rbs_week = cnt_drw.add(drw.g(class_="calendar_week", transform=week_translation))
     for i in range(7):
         if i > today.isoweekday() or (today.isoweekday() == 7 and i > 0):
             continue
@@ -165,15 +166,15 @@ def create_svgs(data, today):
         current_date += timedelta(days=1)
 
     # Add month labels
-    aln_drw.add(month)
-    bnf_drw.add(month)
-    ntw_drw.add(month)
-    rbs_drw.add(month)
+    clb_drw.add(month)
+    cnd_drw.add(month)
+    cnn_drw.add(month)
+    cnt_drw.add(month)
 
-    aln_drw.save()
-    bnf_drw.save()
-    ntw_drw.save()
-    rbs_drw.save()
+    clb_drw.save()
+    cnd_drw.save()
+    cnn_drw.save()
+    cnt_drw.save()
 
 
 def draw_shape(df, date_, i, drw_, aln_week_, bnf_week_, ntw_week_, rbs_week_):
@@ -218,6 +219,11 @@ class ImageGenPlugin(BasePlugin):
 
     def on_files(self, files, config, **kwargs):
         logging.warn("Files: {}".format(files.documentation_pages()))
+        calibration_file = File(
+            path="calibration.svg",
+            src_dir="images",
+            dest_dir=config['site_dir']
+        )
         return files
 
 
